@@ -1,0 +1,501 @@
+id,question
+0,What is the key of the song 'Let It Be' by The Beatles?
+0,Can you provide the chord progression for 'Let It Be'?
+0,What is the tempo in beats per minute for 'Let It Be'?
+0,Which cadence is used at the end of 'Let It Be'?
+0,What is the time signature of 'Let It Be'?
+1,What is the key of the song 'Hotel California'?
+1,Can you list the chord progression used in 'Hotel California'?
+1,What is the time signature for 'Hotel California'?
+1,What kind of cadence does 'Hotel California' have?
+1,What are the notable theory concepts in 'Hotel California'?
+2,What is the key of the song Wonderwall by Oasis?
+2,Can you provide the chord progression used in Wonderwall?
+2,What special cadence is featured in Wonderwall?
+2,What is the tempo of Wonderwall in beats per minute?
+2,What is the time signature of Wonderwall?
+3,What is the key of 'Sweet Child O' Mine'?
+3,Can you tell me the time signature of the song?
+3,What is the chord progression used in 'Sweet Child O' Mine'?
+3,Which cadence is featured in this song?
+3,What kind of relationships are explored in the theory notes?
+4,What is the musical genre of 'The Sound of Silence'?
+4,In which key is 'The Sound of Silence' written?
+4,Can you provide the chord progression used in 'The Sound of Silence'?
+4,What is the time signature of 'The Sound of Silence'?
+4,What type of cadence does 'The Sound of Silence' feature?
+5,What is the key of 'House of the Rising Sun'?
+5,Which genre does 'House of the Rising Sun' belong to?
+5,What is the chord progression used in 'House of the Rising Sun'?
+5,What is the tempo in beats per minute for 'House of the Rising Sun'?
+5,What type of cadence is used in 'House of the Rising Sun'?
+6,What is the key of Canon in D by Johann Pachelbel?
+6,What is the tempo of Canon in D expressed in beats per minute?
+6,Can you provide the chord progression used in Canon in D?
+6,What type of cadence is found in Canon in D?
+6,What musical techniques are employed in Canon in D?
+7,What is the key signature of 'Moonlight Sonata'?
+7,Can you explain the tempo of this piece and how it contributes to its overall feel?
+7,What chord progression is used in 'Moonlight Sonata'?
+7,What is the significance of the cadence found in this piece?
+7,Which musical elements are emphasized in the theory notes for 'Moonlight Sonata'?
+8,What is the time signature of 'Take Five'?
+8,In which key is 'Take Five' composed?
+8,Can you describe the chord progression used in 'Take Five'?
+8,What is the genre of 'Take Five' by Dave Brubeck?
+8,What type of cadence does 'Take Five' feature?
+9,What is the musical genre of 'Blue Moon'?
+9,What key is 'Blue Moon' composed in?
+9,Can you provide the chord progression for 'Blue Moon'?
+9,What is the tempo of 'Blue Moon' in BPM?
+9,What type of cadence is used in 'Blue Moon'?
+10,What is the key of the song 'Summertime'?
+10,Can you tell me the tempo in BPM for 'Summertime'?
+10,What chord progression is used in 'Summertime'?
+10,What is the time signature of 'Summertime'?
+10,How does the blues influence manifest in 'Summertime'?
+11,What is the key signature of the song 'Amazing Grace'?
+11,Can you tell me the chord progression for 'Amazing Grace'?
+11,What is the tempo in BPM for 'Amazing Grace'?
+11,Is there a specific time signature used in 'Amazing Grace'?
+11,What type of melody does 'Amazing Grace' use?
+12,What is the key signature of 'Stairway to Heaven' by Led Zeppelin?
+12,Can you provide the chord progression used in this song?
+12,What is the time signature of 'Stairway to Heaven'?
+12,Which cadence is found at the end of the chord progression?
+12,What are some notable theoretical elements present in this song?
+13,What is the key of Bohemian Rhapsody?
+13,Can you explain the chord progression used in this song?
+13,What time signature does Bohemian Rhapsody use?
+13,What notable features are present in the harmonic structure of this song?
+13,How does the cadence function in Bohemian Rhapsody?
+14,What is the key of 'Another Brick in the Wall'?
+14,How would you describe the tempo of the song in beats per minute?
+14,Can you list the chord progression used in 'Another Brick in the Wall'?
+14,What type of cadence is found in this song?
+14,What musical elements are featured in the theory notes for this track?
+15,What is the genre of the song 'Come As You Are'?
+15,In what key is 'Come As You Are' composed?
+15,Can you tell me the chord progression used in 'Come As You Are'?
+15,What is the tempo in BPM for 'Come As You Are'?
+15,What type of cadence does 'Come As You Are' use?
+16,What is the main chord progression used in 'Purple Haze' by Jimi Hendrix?
+16,In which key is 'Purple Haze' composed?
+16,What is the tempo of the song 'Purple Haze' in beats per minute?
+16,Can you identify the time signature of 'Purple Haze'?
+16,What type of cadence is featured in 'Purple Haze'?
+17,What is the key of 'The Times They Are A-Changin''?
+17,Can you describe the chord progression used in the song?
+17,What is the time signature of 'The Times They Are A-Changin''?
+17,What genre does Bob Dylan's 'The Times They Are A-Changin'' belong to?
+17,What type of cadence is featured in 'The Times They Are A-Changin''?
+18,What key is 'Vincent (Starry Starry Night)' composed in?
+18,Can you provide the chord progression used in this song?
+18,What is the tempo of 'Vincent (Starry Starry Night)'?
+18,What type of cadence is found in this song?
+18,Which genre does Don McLean's 'Vincent' belong to?
+19,What is the key of the song 'California Dreamin''?
+19,Can you provide the chord progression used in 'California Dreamin''?
+19,What is the time signature for 'California Dreamin''?
+19,Which genre does 'California Dreamin'' belong to?
+19,What type of cadence is featured in 'California Dreamin''?
+20,What is the genre of the song 'Dust in the Wind'?
+20,In which key is 'Dust in the Wind' composed?
+20,What is the main chord progression used in 'Dust in the Wind'?
+20,What type of cadence is featured in 'Dust in the Wind'?
+20,What notable guitar technique is employed in 'Dust in the Wind'?
+21,What is the musical genre of 'Fire and Rain' by James Taylor?
+21,In which key is 'Fire and Rain' composed?
+21,Can you describe the chord progression used in 'Fire and Rain'?
+21,What is the tempo of 'Fire and Rain' in beats per minute?
+21,What type of cadence is found at the end of the progression in 'Fire and Rain'?
+22,What is the key of the song 'Ave Maria' by Franz Schubert?
+22,Can you tell me the tempo in beats per minute for 'Ave Maria'?
+22,What is the chord progression used in 'Ave Maria'?
+22,Which time signature is 'Ave Maria' composed in?
+22,What kind of cadence is featured at the end of 'Ave Maria'?
+23,What is the key signature of 'Ode to Joy'?
+23,Can you tell me the chord progression used in 'Ode to Joy'?
+23,What is the tempo of 'Ode to Joy' in beats per minute?
+23,What type of cadence does 'Ode to Joy' have?
+23,How would you describe the character of 'Ode to Joy' in terms of its harmony?
+24,What is the key of Ave Verum Corpus by Mozart?
+24,How many beats per minute is the tempo of this piece?
+24,Can you provide the chord progression used in this song?
+24,What type of cadence is found in Ave Verum Corpus?
+24,What characteristics define the music theory behind this piece?
+25,What is the key of 'Jesu Joy of Man's Desiring'?
+25,Who is the composer of 'Jesu Joy of Man's Desiring'?
+25,What is the time signature of 'Jesu Joy of Man's Desiring'?
+25,Can you provide the chord progression for 'Jesu Joy of Man's Desiring'?
+25,What is the tempo in BPM for 'Jesu Joy of Man's Desiring'?
+26,What is the key signature of The Four Seasons (Spring) by Vivaldi?
+26,Can you describe the tempo of the piece in beats per minute?
+26,What is the main chord progression used in this composition?
+26,Which style of music does The Four Seasons (Spring) belong to?
+26,What type of cadence is featured in this work?
+27,What is the time signature of 'Clair de Lune'?
+27,In what key is 'Clair de Lune' composed?
+27,Can you provide the chord progression for 'Clair de Lune'?
+27,What type of harmony is used in 'Clair de Lune'?
+27,What is the tempo in beats per minute for 'Clair de Lune'?
+28,What is the key signature of Gymnopédie No. 1 by Erik Satie?
+28,Can you tell me the tempo of Gymnopédie No. 1?
+28,What type of cadence is used at the end of Gymnopédie No. 1?
+28,Which time signature is Gymnopédie No. 1 composed in?
+28,What is the chord progression for Gymnopédie No. 1?
+29,What is the key of the song Boléro by Maurice Ravel?
+29,Can you tell me the tempo in beats per minute for Boléro?
+29,What is the time signature for the piece Boléro?
+29,What is the chord progression used in Boléro?
+29,How would you describe the harmonic features of Boléro?
+30,What is the genre of 'A Love Supreme' by John Coltrane?
+30,In what key is 'A Love Supreme' composed?
+30,What is the chord progression used in 'A Love Supreme'?
+30,What is the tempo in beats per minute for 'A Love Supreme'?
+30,Can you describe the musical style of 'A Love Supreme' in a few words?
+31,What is the key signature of 'Kind of Blue'?
+31,Can you tell me the tempo of 'Kind of Blue' in BPM?
+31,What is the chord progression used in 'Kind of Blue'?
+31,What time signature is 'Kind of Blue' written in?
+31,How would you describe the style of jazz featured in 'Kind of Blue'?
+32,What is the key of the song 'Round Midnight by Thelonious Monk?
+32,Can you describe the tempo of 'Round Midnight?
+32,What is the chord progression used in 'Round Midnight?
+32,Which artist is known for composing 'Round Midnight?
+32,How is the cadence structured in 'Round Midnight?
+33,What is the key of the song 'Caravan'?
+33,Can you describe the time signature used in 'Caravan'?
+33,What is the chord progression for 'Caravan'?
+33,What type of cadence does 'Caravan' end with?
+33,What musical genre does 'Caravan' belong to?
+34,What is the key of the song 'In a Sentimental Mood'?
+34,Who is the artist behind 'In a Sentimental Mood'?
+34,What is the tempo of 'In a Sentimental Mood' in beats per minute?
+34,Can you provide the chord progression used in 'In a Sentimental Mood'?
+34,What type of cadence is featured in 'In a Sentimental Mood'?
+35,What is the genre of 'Body and Soul'?
+35,In what key is 'Body and Soul' composed?
+35,Can you tell me the chord progression used in 'Body and Soul'?
+35,What is the tempo of 'Body and Soul' in BPM?
+35,What form does 'Body and Soul' follow in terms of sections?
+36,What is the genre of 'Georgia on My Mind'?
+36,In which key is 'Georgia on My Mind' composed?
+36,What is the tempo of 'Georgia on My Mind' in BPM?
+36,Can you provide the chord progression used in 'Georgia on My Mind'?
+36,What type of cadence is found at the end of 'Georgia on My Mind'?
+37,What is the key of the song 'Fly Me to the Moon' by Frank Sinatra?
+37,Can you tell me the chord progression used in 'Fly Me to the Moon'?
+37,What is the tempo of 'Fly Me to the Moon' in beats per minute?
+37,What time signature does 'Fly Me to the Moon' have?
+37,Which famous jazz standard has a Bossa nova influence and features a deceptive cadence?
+38,What is the genre of 'The Girl from Ipanema'?
+38,Which key is 'The Girl from Ipanema' composed in?
+38,Can you provide the chord progression for 'The Girl from Ipanema'?
+38,What is the tempo in beats per minute for 'The Girl from Ipanema'?
+38,What type of cadence is used in 'The Girl from Ipanema'?
+39,What is the genre of the song 'Misty'?
+39,Which key is 'Misty' composed in?
+39,Can you provide the chord progression for 'Misty'?
+39,What type of cadence does 'Misty' feature?
+39,What is the tempo of 'Misty' in BPM?
+40,What is the musical key of 'When I Fall in Love'?
+40,Can you provide the chord progression used in the song?
+40,"What is the genre of the song, and who is the artist?"
+40,What type of cadence is featured in this composition?
+40,What is the tempo of 'When I Fall in Love' in beats per minute?
+41,What is the key of the song 'Danny Boy'?
+41,Can you tell me the chord progression used in 'Danny Boy'?
+41,What time signature is 'Danny Boy' written in?
+41,What is the tempo in beats per minute for 'Danny Boy'?
+41,What type of cadence does 'Danny Boy' use?
+42,What is the key signature of the song 'Shenandoah'?
+42,Can you tell me the chord progression used in 'Shenandoah'?
+42,What is the tempo of 'Shenandoah' in BPM?
+42,What is the time signature of 'Shenandoah'?
+42,What type of cadence is found in 'Shenandoah'?
+43,What is the key of the song 'Barbara Allen'?
+43,Can you describe the tempo of 'Barbara Allen'?
+43,What is the time signature used in 'Barbara Allen'?
+43,What is the chord progression for 'Barbara Allen'?
+43,What elements of music theory are present in 'Barbara Allen'?
+44,What is the key of 'The Water Is Wide'?
+44,Can you tell me the tempo of this song?
+44,What chord progression does 'The Water Is Wide' follow?
+44,What is the time signature for this piece?
+44,How is the melody described in the theory notes?
+45,What is the musical key of Wild Mountain Thyme?
+45,What is the tempo of the song in beats per minute?
+45,Can you tell me the time signature used in Wild Mountain Thyme?
+45,What is the chord progression for Wild Mountain Thyme?
+45,What kind of cadence does the song feature?
+46,What is the key of the song 'Greensleeves'?
+46,Can you tell me the tempo of 'Greensleeves' in BPM?
+46,What is the chord progression used in 'Greensleeves'?
+46,Which time signature is 'Greensleeves' composed in?
+46,What musical era does 'Greensleeves' belong to?
+47,What is the key signature of 'Scarborough Fair'?
+47,Can you tell me the chord progression used in 'Scarborough Fair'?
+47,What time signature is 'Scarborough Fair' written in?
+47,What cadence does 'Scarborough Fair' predominantly use?
+47,Are there any specific elements of music theory present in 'Scarborough Fair'?
+48,What is the key of 'Oh Susanna'?
+48,What is the tempo of the song 'Oh Susanna' in BPM?
+48,Can you tell me the chord progression used in 'Oh Susanna'?
+48,What time signature does 'Oh Susanna' have?
+48,What type of cadence is found in 'Oh Susanna'?
+49,What is the genre of 'She'll Be Coming 'Round the Mountain'?
+49,In which key is 'She'll Be Coming 'Round the Mountain' composed?
+49,Can you describe the chord progression used in the song?
+49,What type of cadence is found in 'She'll Be Coming 'Round the Mountain'?
+49,What tradition does this song belong to?
+50,What is the key of the song 'Home on the Range'?
+50,Can you tell me the time signature for 'Home on the Range'?
+50,What chord progression is used in 'Home on the Range'?
+50,What is the tempo of 'Home on the Range' in BPM?
+50,What type of cadence is featured in 'Home on the Range'?
+51,Who is the artist of the song 'Rock Around the Clock'?
+51,What is the genre of 'Rock Around the Clock'?
+51,What key is 'Rock Around the Clock' composed in?
+51,What is the chord progression used in 'Rock Around the Clock'?
+51,What type of rhythm is featured in 'Rock Around the Clock'?
+52,What is the genre of 'Johnny B. Goode'?
+52,In what key is 'Johnny B. Goode' composed?
+52,What is the tempo of 'Johnny B. Goode' in BPM?
+52,Can you provide the chord progression for 'Johnny B. Goode'?
+52,What is the cadence used in 'Johnny B. Goode'?
+53,What is the key of 'Great Balls of Fire' by Jerry Lee Lewis?
+53,Can you describe the tempo of the song in BPM?
+53,What is the chord progression used in 'Great Balls of Fire'?
+53,What type of cadence does this song feature?
+53,What musical style is characterized in 'Great Balls of Fire' by Jerry Lee Lewis?
+54,What is the genre of 'Hound Dog' by Big Mama Thornton?
+54,In which key is 'Hound Dog' composed?
+54,What is the chord progression used in 'Hound Dog'?
+54,How fast is the tempo of 'Hound Dog' in BPM?
+54,What type of cadence is featured in 'Hound Dog'?
+55,What is the musical key of 'Sweet Caroline'?
+55,Can you tell me the tempo of 'Sweet Caroline' in beats per minute?
+55,What is the chord progression used in 'Sweet Caroline'?
+55,What type of cadence is featured at the end of phrases in 'Sweet Caroline'?
+55,How is 'Sweet Caroline' typically characterized in terms of song structure?
+56,What genre does the song 'Piano Man' belong to?
+56,In what key is 'Piano Man' composed?
+56,What is the time signature of 'Piano Man'?
+56,Can you describe the chord progression used in 'Piano Man'?
+56,What type of cadence is found in 'Piano Man'?
+57,What is the key of the song 'Don't Stop Believin' by Journey?
+57,Can you tell me the chord progression used in 'Don't Stop Believin'?
+57,What mood or theme does 'Don't Stop Believin' convey based on its theory notes?
+57,What is the tempo in BPM for 'Don't Stop Believin'?
+57,Which genre does the song 'Don't Stop Believin' belong to?
+58,What is the key of the song 'Livin' on a Prayer' by Bon Jovi?
+58,What chord progression is used in 'Livin' on a Prayer'?
+58,Can you tell me the tempo of 'Livin' on a Prayer'?
+58,What type of cadence does 'Livin' on a Prayer' feature?
+58,Which genre does 'Livin' on a Prayer' belong to?
+59,What is the key signature of 'We Will Rock You'?
+59,Can you provide the chord progression used in the song?
+59,What is the tempo of 'We Will Rock You' in beats per minute?
+59,What type of cadence does 'We Will Rock You' feature?
+59,How does the song structure utilize call and response elements?
+60,What is the primary chord progression used in 'Imagine'?
+60,In what key is John Lennon's 'Imagine' composed?
+60,Can you describe the time signature of 'Imagine'?
+60,What type of cadence is featured in the song 'Imagine'?
+60,What musical theory concepts are highlighted in 'Imagine'?
+61,What is the key of the song 'My Girl' by The Temptations?
+61,Can you provide the chord progression used in 'My Girl'?
+61,What is the tempo of 'My Girl' in beats per minute?
+61,What time signature does 'My Girl' follow?
+61,What is the Roman numeral analysis of the song's chord progression?
+62,What is the genre of the song 'Superstition' by Stevie Wonder?
+62,In which key is 'Superstition' composed?
+62,Can you provide the chord progression used in 'Superstition'?
+62,What is the tempo of the track 'Superstition'?
+62,What type of cadence does the song 'Superstition' have?
+63,What genre does 'What's Going On' belong to?
+63,In what key is 'What's Going On' composed?
+63,Can you describe the chord progression used in 'What's Going On'?
+63,What tempo is 'What's Going On' set at in beats per minute?
+63,What is the primary theme or message conveyed in 'What's Going On'?
+64,What is the genre of 'Respect' by Aretha Franklin?
+64,In what key is the song 'Respect' composed?
+64,What is the tempo in beats per minute for 'Respect'?
+64,Can you describe the chord progression used in 'Respect'?
+64,What kind of influence is evident in the song 'Respect'?
+65,What is the key of the song 'I Got You (I Feel Good)' by James Brown?
+65,What is the tempo in beats per minute for 'I Got You (I Feel Good)'?
+65,Can you provide the chord progression used in 'I Got You (I Feel Good)'?
+65,What time signature is 'I Got You (I Feel Good)' composed in?
+65,What type of cadence does 'I Got You (I Feel Good)' feature?
+66,What genre does the song 'Brown Sugar' belong to?
+66,In what key is 'Brown Sugar' written?
+66,What is the tempo of 'Brown Sugar' in BPM?
+66,Can you provide the chord progression for 'Brown Sugar'?
+66,What type of cadence is used in 'Brown Sugar'?
+67,What is the key signature of the song 'Satisfaction' by The Rolling Stones?
+67,Can you tell me the tempo in BPM for 'Satisfaction'?
+67,What is the chord progression used in 'Satisfaction'?
+67,What type of cadence is featured in 'Satisfaction'?
+67,What genre does 'Satisfaction' belong to?
+68,What is the key of 'Light My Fire' by The Doors?
+68,Can you provide the chord progression used in the song 'Light My Fire'?
+68,What is the tempo of 'Light My Fire' in BPM?
+68,What genre does 'Light My Fire' belong to?
+68,What type of cadence is featured in 'Light My Fire'?
+69,What is the key of the song 'Good Vibrations' by The Beach Boys?
+69,Can you tell me the chord progression used in 'Good Vibrations'?
+69,What tempo is 'Good Vibrations' composed in?
+69,What type of cadence finishes the progression in 'Good Vibrations'?
+69,What instrument is notably used in the arrangement of 'Good Vibrations'?
+70,What is the genre of 'California Love'?
+70,Who are the featured artists on the track 'California Love'?
+70,Which key is 'California Love' composed in?
+70,What is the tempo in beats per minute for 'California Love'?
+70,Can you provide the chord progression used in 'California Love'?
+71,What is the genre of 'Lose Yourself' by Eminem?
+71,In what key is 'Lose Yourself' composed?
+71,What is the tempo in beats per minute for 'Lose Yourself'?
+71,Can you provide the chord progression used in 'Lose Yourself'?
+71,What is the primary cadence type found in 'Lose Yourself'?
+72,What is the key of the song 'Smells Like Teen Spirit'?
+72,Can you tell me the tempo in beats per minute for 'Smells Like Teen Spirit'?
+72,What chord progression is used in 'Smells Like Teen Spirit'?
+72,What genre does 'Smells Like Teen Spirit' belong to?
+72,What is the cadence type in 'Smells Like Teen Spirit'?
+73,What is the key of the song 'Black' by Pearl Jam?
+73,Can you tell me the tempo for 'Black' in BPM?
+73,What is the primary chord progression used in the song 'Black'?
+73,How would you classify the genre of 'Black' by Pearl Jam?
+73,What kind of cadence does the song 'Black' utilize?
+74,What is the key of the song 'Creep' by Radiohead?
+74,Can you tell me the chord progression used in 'Creep'?
+74,What genre does the song 'Creep' belong to?
+74,What is the tempo of 'Creep' in beats per minute?
+74,How does the song 'Creep' conclude musically?
+75,What is the musical genre of 'Tears in Heaven'?
+75,What key is 'Tears in Heaven' composed in?
+75,Can you describe the chord progression used in 'Tears in Heaven'?
+75,What time signature does 'Tears in Heaven' follow?
+75,What emotional theme does 'Tears in Heaven' convey?
+76,What is the key of the song 'Layla'?
+76,Can you provide the chord progression used in 'Layla'?
+76,What is the tempo in BPM for 'Layla'?
+76,What is the time signature of 'Layla'?
+76,What type of musical elements are present in 'Layla'?
+77,What artist performed 'While My Guitar Gently Weeps'?
+77,In which musical key is 'While My Guitar Gently Weeps' composed?
+77,Can you describe the chord progression used in 'While My Guitar Gently Weeps'?
+77,What is the tempo of 'While My Guitar Gently Weeps' in beats per minute?
+77,What type of cadence is featured at the end of 'While My Guitar Gently Weeps'?
+78,What is the key of George Harrison's song 'Something'?
+78,Can you provide the chord progression used in 'Something'?
+78,What is the time signature of the song 'Something'?
+78,Which genre does the song 'Something' belong to?
+78,What type of cadence is present in 'Something'?
+79,What is the key of 'Here Comes the Sun'?
+79,What is the tempo of the song in beats per minute?
+79,Can you describe the time signature of 'Here Comes the Sun'?
+79,What is the chord progression used in this song?
+79,What type of cadence is present in 'Here Comes the Sun'?
+80,What is the key of 'Hurt' by Nine Inch Nails?
+80,Can you tell me about the tempo of the song 'Hurt'?
+80,What is the chord progression used in 'Hurt'?
+80,In which genre is 'Hurt' categorized?
+80,What emotional themes are present in 'Hurt'?
+81,What is the key of the song 'Mad World' by Gary Jules?
+81,Can you tell me the tempo for 'Mad World'?
+81,What is the chord progression used in 'Mad World'?
+81,What genre does 'Mad World' belong to?
+81,Is 'Mad World' originally an original song or a cover version?
+82,What is the key of the song 'Hallelujah' by Leonard Cohen?
+82,Can you tell me the tempo in BPM for 'Hallelujah'?
+82,What is the chord progression used in 'Hallelujah'?
+82,Which time signature is 'Hallelujah' composed in?
+82,What genre does Leonard Cohen's 'Hallelujah' belong to?
+83,What genre does 'The Night We Met' belong to?
+83,What is the key of 'The Night We Met'?
+83,Can you provide the chord progression used in 'The Night We Met'?
+83,What is the tempo of 'The Night We Met' in BPM?
+83,What is the overarching theme of 'The Night We Met'?
+84,What is the key of the song 'Counting Stars'?
+84,Can you tell me the chord progression used in 'Counting Stars'?
+84,What is the tempo in beats per minute for 'Counting Stars'?
+84,Which cadence is featured prominently in 'Counting Stars'?
+84,What genre does 'Counting Stars' belong to?
+85,What is the key of the song 'Radioactive' by Imagine Dragons?
+85,Can you provide the chord progression used in 'Radioactive'?
+85,What tempo is 'Radioactive' played at in BPM?
+85,What genre does 'Radioactive' belong to?
+85,What themes does 'Radioactive' explore in its lyrics?
+86,What genre does 'Someone Like You' belong to?
+86,What is the key signature of 'Someone Like You'?
+86,Can you provide the chord progression used in the song?
+86,What is the tempo of 'Someone Like You' in beats per minute?
+86,How would you describe the emotional style of 'Someone Like You' based on its theory notes?
+87,What is the key of 'Rolling in the Deep'?
+87,Can you explain the chord progression used in the song?
+87,What tempo is 'Rolling in the Deep' set at?
+87,What type of cadence does this song feature?
+87,What genre best describes 'Rolling in the Deep'?
+88,What key is the song 'Shape of You' performed in?
+88,Can you provide the chord progression used in 'Shape of You'?
+88,What is the tempo of 'Shape of You' in BPM?
+88,Which cadence is featured at the end of the progression in 'Shape of You'?
+88,What genre does Ed Sheeran's 'Shape of You' belong to?
+89,What is the time signature of the song 'Thinking Out Loud' by Ed Sheeran?
+89,Can you provide the chord progression used in 'Thinking Out Loud'?
+89,What genre does Ed Sheeran's 'Thinking Out Loud' belong to?
+89,What is the tempo in beats per minute for the song 'Thinking Out Loud'?
+89,What type of cadence does the song 'Thinking Out Loud' have?
+90,What is the key signature of 'All of Me' by John Legend?
+90,Can you tell me the tempo of the song 'All of Me'?
+90,What is the chord progression used in 'All of Me'?
+90,In which time signature is 'All of Me' composed?
+90,Why is 'All of Me' popular as a wedding song?
+91,What is the key of the song 'Stay With Me' by Sam Smith?
+91,Can you provide the chord progression for 'Stay With Me'?
+91,What is the tempo in BPM for 'Stay With Me'?
+91,What kind of cadence is used in 'Stay With Me'?
+91,How does 'Stay With Me' reflect emotional vulnerability in its themes?
+92,What is the genre of 'Uptown Funk' by Mark Ronson featuring Bruno Mars?
+92,In what key is 'Uptown Funk' composed?
+92,What is the tempo in beats per minute (BPM) for the song 'Uptown Funk'?
+92,Can you provide the chord progression used in 'Uptown Funk'?
+92,What kind of cadence does 'Uptown Funk' feature?
+93,What is the genre of the song 'Can't Stop the Feeling'?
+93,In which key is 'Can't Stop the Feeling' composed?
+93,What is the chord progression used in 'Can't Stop the Feeling'?
+93,How fast is the tempo of the song in beats per minute?
+93,What type of cadence does 'Can't Stop the Feeling' feature?
+94,What is the genre of the song 'Shallow'?
+94,Which key is 'Shallow' composed in?
+94,Can you provide the chord progression for 'Shallow'?
+94,What tempo is the song 'Shallow' set at in BPM?
+94,What type of cadence does 'Shallow' feature?
+95,What is the key of 'Bad Romance' by Lady Gaga?
+95,Can you tell me the chord progression used in 'Bad Romance'?
+95,What is the tempo of 'Bad Romance' expressed in BPM?
+95,In which genre is 'Bad Romance' categorized?
+95,What type of cadence is found in 'Bad Romance'?
+96,What is the key of 'Mr. Tambourine Man' by Bob Dylan?
+96,What is the chord progression used in 'Mr. Tambourine Man'?
+96,What time signature does 'Mr. Tambourine Man' have?
+96,Can you tell me the tempo in BPM for 'Mr. Tambourine Man'?
+96,What type of cadences are used in 'Mr. Tambourine Man'?
+97,What is the key of the song 'Back in Black'?
+97,Can you tell me the chord progression used in 'Back in Black'?
+97,What tempo is 'Back in Black' played at in BPM?
+97,What is the time signature of the song 'Back in Black'?
+97,Which cadence is featured in 'Back in Black'?
+98,What is the key of Nocturne in E-flat Major Op.9 No.2?
+98,Who is the composer of this piece?
+98,What is the tempo of the piece expressed in BPM?
+98,Can you provide the chord progression used in this Nocturne?
+98,What type of cadence is found at the end of the composition?
+99,What is the musical genre of 'Swing Low Sweet Chariot'?
+99,In which key is 'Swing Low Sweet Chariot' composed?
+99,What is the chord progression used in this song?
+99,How does the cadence function in 'Swing Low Sweet Chariot'?
+99,What musical form is employed in 'Swing Low Sweet Chariot'?
