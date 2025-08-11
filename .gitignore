@@ -1,6 +1,7 @@
 # Project specific files to ignore.
 .envrc 
 .project-notes.txt
+qdrant_storage/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -56,6 +56,7 @@ You can find the data in [`data/music-theory-dataset-100.csv`](data/music-theory
 - Python 3.12
 - Docker and Docker Compose for containerization
 - [Minsearch](https://github.com/alexeygrigorev/minsearch) for full-text search
+- [Qdrant](https://qdrant.tech/) for vector search
 - Flask as the API interface (see [Background](#background) for more information on Flask)
 - Grafana for monitoring and PostgreSQL as the backend for it
 - OpenAI as an LLM
@@ -90,7 +91,7 @@ pipenv install --dev
 8. Now install remaining dependencies:
 
 ```bash
-pipenv install openai scikit-learn pandas minsearch streamlit flask
+pipenv install openai scikit-learn pandas minsearch streamlit flask "qdrant-client[fastembed]>=1.14.2"
 ```
 9. Now install Jupyter Notebook
 

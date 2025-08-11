@@ -10,6 +10,7 @@ pandas = "*"
 streamlit = "*"
 flask = "*"
 minsearch = "*"
+qdrant-client = {extras = ["fastembed"], version = ">=1.14.2"}
 
 [dev-packages]
 tqdm = "*"
