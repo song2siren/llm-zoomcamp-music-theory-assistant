@@ -1,0 +1,18 @@
+# Core
+pandas
+tqdm
+python-dotenv
+
+# Qdrant
+qdrant-client[fastembed]>=1.14.2
+
+# UI / API
+streamlit
+fastapi
+uvicorn[standard]
+
+# LLMs (OpenAI client)
+openai
+
+# (Optional) evaluation
+sentence-transformers

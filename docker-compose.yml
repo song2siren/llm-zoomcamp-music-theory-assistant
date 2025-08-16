@@ -1,0 +1,74 @@
+version: "3.9"
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+
+  # One-off job that waits for Qdrant to be ready, then ingests the CSV
+  ingest:
+    build:
+      context: .
+      dockerfile: music-theory-assistant/Dockerfile
+    command: bash -lc "python wait-for-qdrant.py && python ingest.py"
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_COLLECTION: zoomcamp-music-theory-assistant
+      EMBED_MODEL: jinaai/jina-embeddings-v2-small-en
+      EMBED_DIM: 512
+      CSV_PATH: /data/music-theory-dataset-100.csv
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    volumes:
+      - ./music-theory-assistant:/app
+      - ./data:/data:ro
+    depends_on:
+      - qdrant
+    restart: "no"
+
+  app:
+    build:
+      context: .
+      dockerfile: music-theory-assistant/Dockerfile
+    command: bash -lc "streamlit run app.py --server.address=0.0.0.0 --server.port=8501"
+    ports:
+      - "8501:8501"
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_COLLECTION: zoomcamp-music-theory-assistant
+      EMBED_MODEL: jinaai/jina-embeddings-v2-small-en
+      EMBED_DIM: 512
+      TOP_K: 5
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    volumes:
+      - ./music-theory-assistant:/app
+      - ./data:/data:ro
+    depends_on:
+      ingest:
+        condition: service_completed_successfully
+
+  api:
+    build:
+      context: .
+      dockerfile: music-theory-assistant/Dockerfile
+    command: bash -lc "uvicorn api:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "8000:8000"
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_COLLECTION: zoomcamp-music-theory-assistant
+      EMBED_MODEL: jinaai/jina-embeddings-v2-small-en
+      EMBED_DIM: 512
+      TOP_K: 5
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    volumes:
+      - ./music-theory-assistant:/app
+      - ./data:/data:ro
+    depends_on:
+      ingest:
+        condition: service_completed_successfully
+
+volumes:
+  qdrant_storage:

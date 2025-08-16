@@ -1,1 +1,19 @@
+# .envrc
+# Copy this file to `.envrc` and adjust values as needed
+# Run `direnv allow` to load these automatically
+# Or use `python-dotenv` to load them in Python
 export OPENAI_API_KEY=your_secure_key
+
+# Path to your dataset CSV
+export CSV_PATH=../data/music-theory-dataset-100.csv
+
+# Qdrant connection
+export QDRANT_URL=http://localhost:6333
+export QDRANT_COLLECTION=zoomcamp-music-theory-assistant
+
+# Embedding model config
+export EMBED_MODEL=jinaai/jina-embeddings-v2-small-en
+export EMBED_DIM=512
+
+# Retrieval config
+export TOP_K=5
