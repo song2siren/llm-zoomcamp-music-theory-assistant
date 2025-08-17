@@ -1,5 +1,6 @@
 # Core
 pandas
+scikit-learn
 tqdm
 python-dotenv
 
@@ -16,3 +17,7 @@ openai
 
 # (Optional) evaluation
 sentence-transformers
+
+# Monitoring
+psycopg2-binary>=2.9
+prometheus-client

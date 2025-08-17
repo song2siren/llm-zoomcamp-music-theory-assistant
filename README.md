@@ -91,9 +91,21 @@ pipenv install --dev
 8. Now install remaining dependencies:
 
 ```bash
-pipenv install openai scikit-learn pandas minsearch qdrant-client[fastembed]>=1.14.2 streamlit httpie
+pipenv install \
+  openai \
+  scikit-learn \
+  pandas \
+  minsearch \
+  "qdrant-client[fastembed]>=1.14.2" \
+  streamlit \
+  httpie \
+  python-dotenv \
+  psycopg2-binary \
+  sentence-transformers \
+  prometheus-client
 ```
-9. Now install Jupyter Notebook
+
+9. Now install developer tools
 
 ```bash
 pipenv install --dev tqdm notebook==7.1.2 ipywidgets
@@ -205,7 +217,7 @@ Before running either interface it is necessary to run the Python data ingestion
 
 This project provides **two ways to interact with the Music Theory Assistant**:
 
-- Streamlit UI 🎵
+- **Streamlit UI** 🎵
 
   A web-based interface where users can type in natural-language questions (e.g., "Which songs use deceptive cadences?") and receive answers enhanced with contextual information from the knowledge base.
 
@@ -216,7 +228,7 @@ This project provides **two ways to interact with the Music Theory Assistant**:
   ```
   The UI is interactive, lightweight, and requires no coding from the user.
 
-- FastAPI ⚡
+- **FastAPI** ⚡
 
   A REST API that exposes the same RAG functionality programmatically. This allows other applications or scripts to integrate with the assistant.
 
@@ -276,17 +288,17 @@ project-root/
 │   └── music-theory-dataset-100.csv
 ├── docker-compose.yml
 └── music-theory-assistant/
-    ├── app.py
     ├── api.py
+    ├── app.py
     ├── ingest.py
-    ├── wait-for-qdrant.py
+    ├── wait_for_qdrant.py
     ├── requirements.txt
     └── (other project files…)
 ```
 
 **Environment**
 
-Set your OpenAI key so the containers can access it. Easiest is to export it before running Compose:
+Set your OpenAI key so the containers can access it. The simplest thing to do is export it before running Compose:
 
 ```bash
 export OPENAI_API_KEY=sk-...

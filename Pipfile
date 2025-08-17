@@ -11,6 +11,9 @@ streamlit = "*"
 flask = "*"
 minsearch = "*"
 qdrant-client = {extras = ["fastembed"], version = ">=1.14.2"}
+psycopg2-binary = "*"
+python-dotenv = "*"
+prometheus-client = "*"
 
 [dev-packages]
 tqdm = "*"

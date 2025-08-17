@@ -5,7 +5,7 @@
 export OPENAI_API_KEY=your_secure_key
 
 # Path to your dataset CSV
-export CSV_PATH=../data/music-theory-dataset-100.csv
+export CSV_PATH=data/music-theory-dataset-100.csv
 
 # Qdrant connection
 export QDRANT_URL=http://localhost:6333
@@ -17,3 +17,15 @@ export EMBED_DIM=512
 
 # Retrieval config
 export TOP_K=5
+
+# Database connection (adjust as needed)
+export POSTGRES_HOST=localhost
+export POSTGRES_DB=music_theory_assistant
+export POSTGRES_USER=your_username
+export POSTGRES_PASSWORD=your_password
+
+# Ensure London time in app and DB helpers
+export TZ=Europe/London
+
+# Optional: skip timezone sanity check during normal runs
+export RUN_TIMEZONE_CHECK=0

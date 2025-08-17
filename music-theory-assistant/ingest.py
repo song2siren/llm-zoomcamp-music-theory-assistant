@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ---- Config ----
-CSV_PATH = os.getenv("CSV_PATH", "../data/music-theory-dataset-100.csv")
+CSV_PATH = os.getenv("CSV_PATH", "data/music-theory-dataset-100.csv")
 QD_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 COLLECTION = os.getenv("QDRANT_COLLECTION", "zoomcamp-music-theory-assistant")
 EMBED_MODEL = os.getenv("EMBED_MODEL", "jinaai/jina-embeddings-v2-small-en")
