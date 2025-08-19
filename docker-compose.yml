@@ -139,7 +139,7 @@ services:
 
   prometheus:
     image: prom/prometheus:latest
-    profiles: ["monitoring"]
+    # profiles: ["monitoring"]
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     command:
@@ -155,7 +155,7 @@ services:
 
   grafana:
     image: grafana/grafana:10.4.2
-    profiles: ["monitoring"]
+    # profiles: ["monitoring"]
     ports:
       - "3000:3000"
     environment:

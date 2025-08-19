@@ -8,11 +8,19 @@ from db import save_conversation, save_feedback
 
 from prometheus_client import Counter, Histogram, Gauge, generate_latest, CONTENT_TYPE_LATEST
 
+# --- Metrics ---
 REQUESTS = Counter("rag_requests_total", "Total RAG requests")
 ERRORS = Counter("rag_errors_total", "Total RAG request errors")
 LATENCY = Histogram("rag_latency_seconds", "RAG end-to-end latency (seconds)")
 TOKENS = Histogram("rag_total_tokens", "Total tokens per call", buckets=(0, 250, 500, 1000, 2000, 4000, 8000))
 HEALTH = Gauge("app_healthy", "1 if app considers itself healthy")
+
+# feedback + persistence counters
+FEEDBACK_UP = Counter("feedback_up_total", "Thumbs-up feedback count")
+FEEDBACK_DOWN = Counter("feedback_down_total", "Thumbs-down feedback count")
+CONV_SAVED = Counter("conversation_saved_total", "Conversations saved to DB")
+
+FEEDBACK_UP.inc(0); FEEDBACK_DOWN.inc(0); CONV_SAVED.inc(0)
 
 load_dotenv()
 
@@ -48,6 +56,7 @@ def rag_endpoint(q: Query):
     conv_id = str(uuid.uuid4())
     try:
         save_conversation(conv_id, q.question, answer_data)
+        CONV_SAVED.inc()  # track successful persistence
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"DB save failed: {e}")
 
@@ -78,6 +87,11 @@ def feedback_endpoint(fb: Feedback):
         raise HTTPException(status_code=400, detail="feedback must be 1 or -1")
     try:
         save_feedback(fb.conversation_id, fb.feedback)
+        # increment the right counter
+        if fb.feedback > 0:
+            FEEDBACK_UP.inc()
+        else:
+            FEEDBACK_DOWN.inc()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"DB save failed: {e}")
     return {"ok": True}
