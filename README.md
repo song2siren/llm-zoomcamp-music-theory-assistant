@@ -114,6 +114,21 @@ pipenv install --dev tqdm notebook==7.1.2 ipywidgets
 
 ## Evaluation
 
+For each of the evaluation criteria, see the following sections:
+
+- [Problem description](#problem-description)
+- [Retrieval flow](#retrieval-flow)
+- [Retrieval evaluation](#retrieval-evaluation)
+- [LLM evaluation](#llm-evaluation)
+- [Interface](#interface)
+- [Ingestion pipeline](#ingestion-pipeline)
+- [Monitoring](#monitoring)
+- [Containerization](#containerization)
+- [Reproducibility](#reproducibility) TODO
+- [Best practices](#best-practices) TODO
+
+The score criteria (with self-evaluation and additional commentary) can be found in the [docs/project-evaluation.ipynb](notebooks/docs/project-evaluation.ipynb) notebook.
+
 The code for evaluating the system can be found in the [notebooks/rag-test.ipynb](notebooks/rag-test.ipynb) notebook.
 
 To launch [Jupyter Notebook](https://jupyter.org/) from inside Pipenv, do the following:
@@ -139,9 +154,6 @@ docker run -p 6333:6333 -p 6334:6334 \
    -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
    qdrant/qdrant
 ```
-
-The score criteria (with additional commentary) can be found in the [docs/project-evaluation.ipynb](notebooks/docs/project-evaluation.ipynb) notebook.
-
 ### Retrieval Flow
 
 The knowledgebase is based upon a [ChatGPT](https://chatgpt.com/) generated [data/music-theory-dataset-100.csv](data/music-theory-dataset-100.csv) CSV file. This is used together with the [ChatGPT 4o LLM](https://chatgpt.com/?model=gpt-4o).
@@ -206,7 +218,7 @@ Finally, the fourth approach uses [Qdrant](https://qdrant.tech/) hybrid vector s
 
 Note that here the MRR is lower, possibly because the first correct document is still within the top results but pushed lower on average.
 
-**Conclusion**: The **minsearch text search with boosted parameters** seems to perform the best and is therefore used in the LLM evaluation below and in the music theory assistant application.
+**Conclusion**: The **minsearch text search with boosted parameters** seems to perform the best and is therefore used in the LLM evaluation below.
 
 ### LLM Evaluation
 
@@ -214,6 +226,8 @@ Two approaches are taken to evaluate the quality of the RAG flow:
 
 * Cosine similarity (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini))
 * LLM-as-a-Judge (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) and [gpt-4o](https://chatgpt.com/?model=gpt-4o))
+
+#### Cosine Similarity
 
 For cosine similarity with a single test record, the following result was returned:
 
@@ -233,6 +247,8 @@ For cosine similarity when comparing the [gpt-4o-mini](https://chatgpt.com/?mode
 | max      | 0.88    | Best similarity.                        |
 
 Just a single model was used for cosine similarity, but for LLM-as-a-Judge multiple models were evaluated.
+
+#### LLM-as-a-Judge
 
 For the LLM-as-a-Judge (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini)), among 200 records, the following results were returned:
 
@@ -306,81 +322,7 @@ python music-theory-assistant/ingest.py
 
 After ingestion, Qdrant persists the collection, so the app and API can be restarted without re-ingesting.
 
-### Containerization
-
-[Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) have also been used for the application and API setup.
-
-To get started:
-
-**Prerequisites**
-
-- Docker and Docker Compose installed (should be already if running in Codespaces)
-- An OpenAI API key
-
-**Project layout (expected)**
-
-```kotlin
-project-root/
-├── data/
-│   └── music-theory-dataset-100.csv
-├── docker-compose.yml
-└── music-theory-assistant/
-    ├── api.py
-    ├── app.py
-    ├── ingest.py
-    ├── wait_for_qdrant.py
-    ├── requirements.txt
-    └── (other project files…)
-```
-
-**Environment**
-
-Set your OpenAI key so the containers can access it. The simplest thing to do is export it before running Compose:
-
-```bash
-export OPENAI_API_KEY=sk-...
-```
-
-(You can also put this in a .env file next to docker-compose.yml with OPENAI_API_KEY=....)
-
-**One-command run**
-
-From the **project root**, run:
-
-```bash
-docker compose up --build
-```
-
-What happens:
-
-- **Qdrant** starts and persists data in a named volume.
-- **Ingest** waits until Qdrant is ready, then loads [data/music-theory-dataset-100.csv](data/music-theory-dataset-100.csv) into the zoomcamp-music-theory collection (and exits).
-- **App** (Streamlit UI) starts on http://localhost:8501.
-- **API** (FastAPI) starts on http://localhost:8000.
-- **Monitoring** Prometheus starts on http://localhost:9090 and Grafana starts on http://localhost:3000.
-
-Visit:
-
-- UI: http://localhost:8501
-- API docs: http://localhost:8000/docs
-- Prometheus: http://localhost:9090
-- Grafana: http://localhost:3000 (admin/admin)
-
-**Re-ingesting data**
-
-If you change the CSV, re-run only the ingestion:
-
-```bash
-docker compose run --rm ingest
-```
-
-**Stopping everything**
-
-```bash
-docker compose down
-```
-
-**Monitoring**
+## Monitoring ##
 
 To Ping the API (using HTTPie installed earlier in Pipenv):
 
@@ -475,6 +417,87 @@ This shows 8 key panels or charts.
 - **Error Rate** – the number of failed RAG calls per second.
 - **Conversations Saved** – how many conversations are being persisted to the database.
 - **App Health** – a simple 1/0 indicator showing if the API is reporting itself healthy.
+
+### Containerization
+
+[Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) have also been used for the application and API setup.
+
+To get started:
+
+**Prerequisites**
+
+- Docker and Docker Compose installed (should be already if running in Codespaces)
+- An OpenAI API key
+
+**Project layout (expected)**
+
+```kotlin
+project-root/
+├── data/
+│   └── music-theory-dataset-100.csv
+├── docker-compose.yml
+└── music-theory-assistant/
+    ├── api.py
+    ├── app.py
+    ├── ingest.py
+    ├── wait_for_qdrant.py
+    ├── requirements.txt
+    └── (other project files…)
+```
+
+**Environment**
+
+Set your OpenAI key so the containers can access it. The simplest thing to do is export it before running Compose:
+
+```bash
+export OPENAI_API_KEY=sk-...
+```
+
+(You can also put this in a .env file next to docker-compose.yml with OPENAI_API_KEY=....)
+
+**One-command run**
+
+From the **project root**, run:
+
+```bash
+docker compose up --build
+```
+
+What happens:
+
+- **Qdrant** starts and persists data in a named volume.
+- **Ingest** waits until Qdrant is ready, then loads [data/music-theory-dataset-100.csv](data/music-theory-dataset-100.csv) into the zoomcamp-music-theory collection (and exits).
+- **App** (Streamlit UI) starts on http://localhost:8501.
+- **API** (FastAPI) starts on http://localhost:8000.
+- **Monitoring** Prometheus starts on http://localhost:9090 and Grafana starts on http://localhost:3000.
+
+Visit:
+
+- UI: http://localhost:8501
+- API docs: http://localhost:8000/docs
+- Prometheus: http://localhost:9090
+- Grafana: http://localhost:3000 (admin/admin)
+
+**Re-ingesting data**
+
+If you change the CSV, re-run only the ingestion:
+
+```bash
+docker compose run --rm ingest
+```
+
+**Stopping everything**
+
+```bash
+docker compose down
+```
+## Reproducibility
+
+TODO
+
+## Best Practices
+
+TODO
 
 ## Acknowledgements
 
