@@ -34,7 +34,7 @@ The main use cases include:
 
 ## Dataset
 
-The dataset used in this project contains detailed music theory annotations for various well-known songs, including:
+The [dataset used in this project]((data/music-theory-dataset-100.csv)) contains detailed music theory annotations for various well-known songs, including:
 
 - **Title:** The name of the song (e.g., *Let It Be*, *Smells Like Teen Spirit*).  
 - **Artist:** The performing artist or band (e.g., The Beatles, Nirvana).  
@@ -49,14 +49,16 @@ The dataset used in this project contains detailed music theory annotations for 
 
 The dataset currently contains 100 curated, musically accurate and unique records. It serves as the foundation for the Music Theory Assistant's ability to answer questions about harmonic analysis, cadences, and chord functions.
 
-You can find the data in [`data/music-theory-dataset-100.csv`](data/music-theory-dataset-100.csv).
+You can find the data in [`data/music-theory-dataset-100.csv`](/data/music-theory-dataset-100.csv).
+
+There is a list of example questions you could ask the Music Theory Assistant in [`data/ground-truth-retrieval.csv`](/data/ground-truth-retrieval.csv).
 
 ## Technologies
 
 - [Python 3.12](https://www.python.org/downloads/release/python-3120/)
 - [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) for containerisation
 - [Minsearch](https://github.com/alexeygrigorev/minsearch) for full-text search
-- [Qdrant](https://qdrant.tech/) for vector search
+- [Qdrant](https://qdrant.tech/) for vector search and hybrid vector search
 - [Streamlit](https://streamlit.io/) for the application
 - [FastAPI](https://fastapi.tiangolo.com/) for the API
 - [Grafana](https://grafana.com/) and [Prometheus](https://prometheus.io/) for monitoring and [PostgreSQL](https://www.postgresql.org/) as the backend
@@ -114,7 +116,7 @@ pipenv install --dev tqdm notebook==7.1.2 ipywidgets
 
 ## Evaluation
 
-For each of the evaluation criteria, see the following sections:
+For each of the evaluation criteria, see the following sections of the README below:
 
 - [Problem description](#problem-description)
 - [Retrieval flow](#retrieval-flow)
@@ -127,9 +129,9 @@ For each of the evaluation criteria, see the following sections:
 - [Reproducibility](#reproducibility) TODO
 - [Best practices](#best-practices) TODO
 
-The score criteria (with self-evaluation and additional commentary) can be found in the [docs/project-evaluation.ipynb](notebooks/docs/project-evaluation.ipynb) notebook.
+The score criteria (with self-evaluation and additional commentary) can be found in the [Project Evaluation](/docs/project-evaluation.md) notebook.
 
-The code for evaluating the system can be found in the [notebooks/rag-test.ipynb](notebooks/rag-test.ipynb) notebook.
+The code for evaluating the system can be found in the [RAG Test](/notebooks/rag-test.ipynb) notebook.
 
 To launch [Jupyter Notebook](https://jupyter.org/) from inside Pipenv, do the following:
 
@@ -154,13 +156,20 @@ docker run -p 6333:6333 -p 6334:6334 \
    -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
    qdrant/qdrant
 ```
+
 ### Retrieval Flow
 
-The knowledgebase is based upon a [ChatGPT](https://chatgpt.com/) generated [data/music-theory-dataset-100.csv](data/music-theory-dataset-100.csv) CSV file. This is used together with the [ChatGPT 4o LLM](https://chatgpt.com/?model=gpt-4o).
+The knowledgebase is based upon a [ChatGPT](https://chatgpt.com/) generated [Music Theory Dataset CSV file](/data/music-theory-dataset-100.csv).
 
 ### Retrieval Evaluation
 
 Multiple retrieval approaches are evaluated:
+
+- [minsearch (text search non-boosted)](#minsearch)
+- [minsearch (text search boosted)](#minsearch-boosted)
+- [Qdrant (vector search)](#qdrant-vector-search)
+- [Qdrant (vector search hybrid)](#qdrant-hybrid-vector-search)
+- [Qdrant (vector search hybrid re-ranked)](#qdrant-hybrid-vector-search-re-ranked)
 
 #### minsearch
 
@@ -177,6 +186,7 @@ After the boosting is improved, the following results are returned:
 * MRR: 91%
 
 The best boosting parameters:
+
 ```python
 boost = {
     'title': 2.83,
@@ -191,6 +201,7 @@ boost = {
     'theory_notes': 0.15
 }
 ```
+
 Note that the routine to generate these parameters will likely return different results each time it is run.
 
 #### Qdrant vector search
@@ -218,14 +229,14 @@ Finally, the fourth approach uses [Qdrant](https://qdrant.tech/) hybrid vector s
 
 Note that here the MRR is lower, possibly because the first correct document is still within the top results but pushed lower on average.
 
-**Conclusion**: The **minsearch text search with boosted parameters** seems to perform the best and is therefore used in the LLM evaluation below.
+**Conclusion**: The [**minsearch text search with boosted parameters**](#minsearch-boosted) seems to perform the best and is therefore used moving forward in the LLM evaluation below.
 
 ### LLM Evaluation
 
 Two approaches are taken to evaluate the quality of the RAG flow:
 
-* Cosine similarity (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini))
-* LLM-as-a-Judge (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) and [gpt-4o](https://chatgpt.com/?model=gpt-4o))
+* [Cosine similarity](#cosine-similarity) (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini))
+* [LLM-as-a-Judge](#llm-as-a-judge) (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) and [gpt-4o](https://chatgpt.com/?model=gpt-4o))
 
 #### Cosine Similarity
 
@@ -233,7 +244,7 @@ For cosine similarity with a single test record, the following result was return
 
 * Cosine similarity: 0.47456914
 
-For cosine similarity when comparing the [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) answer for each question in the [ground truth data set](data/ground-truth-retrieval.csv) with the answer in the original [music theory dataset](data/music-theory-dataset-100.csv), the following results were returned:
+For cosine similarity when comparing the [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) answer for each question in the [Ground Truth Dataset](data/ground-truth-retrieval.csv) with the answer in the original [Music Theory Dataset](/data/music-theory-dataset-100.csv), the following results were returned:
 
 | Metric   | Value   | Meaning                                 |
 | -------- | ------- | --------------------------------------- |
@@ -246,7 +257,7 @@ For cosine similarity when comparing the [gpt-4o-mini](https://chatgpt.com/?mode
 | 75%      | 0.65    | Third quartile (good matches).          |
 | max      | 0.88    | Best similarity.                        |
 
-Just a single model was used for cosine similarity, but for LLM-as-a-Judge multiple models were evaluated.
+Just a single model was used for cosine similarity, but for [LLM-as-a-Judge](#llm-as-a-judge) multiple models were evaluated.
 
 #### LLM-as-a-Judge
 
@@ -262,242 +273,159 @@ For the LLM-as-a-Judge (with [gpt-4o](https://chatgpt.com/?model=gpt-4o)), among
 * PARTLY_RELEVANT - 6 (3%)
 * NON_RELEVANT - 1 (0.5%)
 
-**Conclusion**: Using LLM-as-a-Judge [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) is marginally better and will be used for developiing the music theory assistant application.
+**Conclusion**: Using LLM-as-a-Judge [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) is marginally better and will be used for developiing the Music Theory Assistant application.
 
 ### Interface
 
-Before running either interface it is necessary to run the Python data ingestion script into Qdrant as noted in the [Ingestion Pipeline section](#ingestion-pipeline) below.
-
-This project provides **two ways to interact with the Music Theory Assistant**:
+This project provides **two ways** to interact with the Music Theory Assistant:
 
 - **Streamlit UI** 🎵
 
-  A web-based interface where users can type in natural-language questions (e.g., "Which songs use deceptive cadences?") and receive answers enhanced with contextual information from the knowledge base.
-
-  To start the app:
-
-  ```bash
-  streamlit run music-theory-assistant/app.py
-  ```
-  The UI is interactive, lightweight, and requires no coding from the user.
+  A web-based interface where users can type in natural-language questions (e.g., *"Which songs use deceptive cadences?"*) and receive answers enhanced with contextual information from the knowledge base.
 
 - **FastAPI** ⚡
 
   A REST API that exposes the same RAG functionality programmatically. This allows other applications or scripts to integrate with the assistant.
 
-  To start the API server:
-
-  ```bash
-  # Option 1: Run from inside the application folder
-  cd music-theory-assistant
-  uvicorn api:app --reload --port 8000
-
-  # Option 2: Run from project root
-  uvicorn music-theory-assistant.api:app --reload --port 8000
-  ```
-
-  Example query from the terminal (using [httpie](https://httpie.io/)):
+  An example of a query from the terminal (using [httpie](https://httpie.io/)):
 
   ```bash
   http POST :8000/rag question="Which songs use deceptive cadences?"
   ```
 
-  Or open the interactive docs at: http://127.0.0.1:8000/docs
+  More information about interacting with the API can be found [here](/docs/dev-setup.md#interacting-with-the-api).
+
+  Both of these interfaces implement [Qdrant](https://qdrant.tech/) vector search as the search technology.
+
+#### 🚀 Quickstart (Recommended)
+
+The fastest way to run the Music Theory Assistant is with [Docker Compose](https://docs.docker.com/compose/). This will launch the Streamlit UI, FastAPI backend, Qdrant, Postgres, Prometheus, and Grafana in one command.
+
+1. Prerequisites
+    - [Docker](https://www.docker.com/)
+    - [Docker Compose](https://docs.docker.com/compose/)
+    - An [OpenAI API](https://platform.openai.com/api-keys) key
+
+2. Set your API key
+
+    Export your OpenAI API key so the containers can access it:
+
+    ```bash
+    export OPENAI_API_KEY=sk-...
+    ```
+
+    (Alternatively, create a `.env` file next to [docker-compose.yml](/docker-compose.yml) with OPENAI_API_KEY=sk-... inside.)
+
+3. Run everything
+
+    From the project root:
+
+    ```bash
+    docker compose up --build
+    ```
+
+    That’s it 🎉 — everything is started at once.
+
+4. Open the services
+
+    - Streamlit App (UI) → http://localhost:8501
+    - FastAPI Docs → http://localhost:8000/docs
+    - Prometheus → http://localhost:9090
+    - Grafana → http://localhost:3000 (login: admin / admin)
+
+    The dataset ingestion step runs automatically on startup as a [Python script](/music-theory-assistant/ingest.py), so the app is ready to query.
+
+5. Re-ingest data (if you change the CSV)
+
+    If you update the dataset, reload it into Qdrant with:
+
+    ```bash
+    docker compose run --rm ingest
+    ```
+
+6. Stop everything
+
+    ```bash
+    docker compose down
+    ```
+
+🔧 Development without Docker (*Optional*)
+
+If you prefer running locally (not recommended for reviewers), see [these instructions](/docs/dev-setup.md).
 
 ### Ingestion Pipeline
 
-The dataset (of musical theory–annotated songs) is loaded into a Qdrant vector database via a dedicated ingestion script. This ensures that the retrieval layer is always backed by fresh and structured embeddings.
-
-The script reads from [data/music-theory-dataset-100.csv](data/music-theory-dataset-100.csv).
+The [dataset (of musical theory–annotated songs)](/data/music-theory-dataset-100.csv) is loaded into a Qdrant vector database via a dedicated [Python ingestion script](/music-theory-assistant/ingest.py). This ensures that the retrieval layer is always backed by fresh and structured embeddings.
 
 It generates embeddings for each record (title, artist, genre, chords, cadences, etc.) using jinaai/jina-embeddings-v2-small-en.
 
 The embeddings and payloads are stored in a Qdrant collection (zoomcamp-music-theory-assistant).
 
-Run the ingestion step once before starting the app:
+The data ingestion is performed automatically as part of the [Quickstart](#-quickstart-recommended) process described above.
 
-```bash
-python music-theory-assistant/ingest.py
-```
+## Monitoring
 
-After ingestion, Qdrant persists the collection, so the app and API can be restarted without re-ingesting.
+Monitoring is performed using [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/). These services are launched automatically with Docker Compose.
 
-## Monitoring ##
+### Access the UIs
 
-To Ping the API (using HTTPie installed earlier in Pipenv):
+- Prometheus → http://localhost:9090
+- Grafana → http://localhost:3000 (login: admin / admin)
 
-```bash
-http GET :8000/health
-```
-Expected: {"ok": true}
+### Metrics
 
-To ask the RAG a question via the API:
+The API and UI expose Prometheus metrics (via `/metrics`), including:
 
-```bash
-http POST :8000/rag question="Which songs use deceptive cadences?"
-```
+- `rag_requests_total` – number of RAG requests processed
+- `rag_latency_seconds` – request latency distribution
+- `rag_errors_total` – failed requests
+- `rag_total_tokens` – token usage per request
+- `feedback_up_total` / `feedback_down_total` – user feedback counts
+- `conversation_saved_total` – persisted conversations
+- `app_healthy` – API health flag (1/0)
 
-To then verify this has been saved to Postgres:
+### Preconfigured Grafana Dashboard
 
-```bash
-docker compose exec postgres psql -U your_username -d music_theory_assistant -c \
-"SELECT id, left(question,60)||'…' AS q, model_used, response_time, relevance, openai_cost, timestamp
- FROM conversations ORDER BY timestamp DESC LIMIT 5;"
-```
+A ready-to-use dashboard is provided at [dashboard.json](/dashboard.json).
 
-To send feedback via the API:
+To import it:
 
-```bash
-http POST :8000/feedback conversation_id=<YOUR_CONVERSATION_ID> feedback:=1
-# or thumbs down
-http POST :8000/feedback conversation_id=<YOUR_CONVERSATION_ID> feedback:=-1
-```
+1. Open Grafana → http://localhost:3000 (login: admin / admin)
+2. Left menu → Dashboards → New → Import
+3. Upload dashboard.json (from the project root).
+4. Select Prometheus as the data source.
+5. Click Import.
 
-And then verify it saved:
+### Dashboard Overview
 
-```bash
-docker compose exec postgres psql -U your_username -d music_theory_assistant -c \
-"SELECT conversation_id, feedback, timestamp FROM feedback ORDER BY timestamp DESC LIMIT 5;"
-```
-Alternatively there is a small [generate_events.sh](/generate_events.sh) file at the project root. Run this:
+The dashboard shows **8 panels** to cover the evaluation criteria:
 
-```bash
-bash generate_events.sh
-```
-And check...
-
-```bash
-curl -s http://localhost:8000/metrics | grep -E 'feedback_(up|down)_total'
-```
-
-### Prometheus
-
-To check Prometheus is running open http://localhost:9090 in your browser.
-
-To run a quick query, go to the Graph tab and execute this in the query box:
-
-```promql
-up
-```
-To check the Postgres exporter is running:
-
-```promql
-pg_database_size_bytes
-```
-
-### Grafana
-
-To check Grafana is running open http://localhost:3000 in your browser. Login with default credentials (admin / admin unless you changed them).
-
-Go to Connections → Data sources and check Prometheus is already added.
-
-From Connections → Data sources → Prometheus:
-
-- Click Build a dashboard
-- Add visualization
-- Select Prometheus as the data source
-- Toggle the query builder to code and run the following:
-
-```bash
-rate(pg_stat_activity_count[1m])
-```
-You should see a graph.
-
-Alternatively, there is a [preconfigured Grafana dashboard](/dashboard.json) at the project root which you can load into Grafana.
+- **RAG Request Rate** – queries processed per second
+- **Latency (P95)** – 95th percentile response time
+- **Average Tokens per Call** – LLM usage per query
+- **Feedback Trends** – 👍 thumbs-up vs 👎 thumbs-down feedback
+- **Feedback Approval Rate** – percentage of positive feedback
+- **Error Rate** – failed RAG calls per second
+- **Conversations Saved** – successful DB persistence
+- **App Health** – 1/0 flag showing if API reports healthy
 
 ![Grafana](/images/grafana.png)
 
-This shows 8 key panels or charts.
-
-- **RAG Request Rate** – how many user queries are being processed per second.
-- **Latency (P95)** – the 95th percentile response time for end-to-end RAG requests, showing how fast answers are returned under load.
-- **Average Tokens per Call** – the average number of LLM tokens consumed per request (prompt + completion).
-- **Feedback Trends** – counts of 👍 thumbs-up and 👎 thumbs-down feedback submitted by users.
-- **Feedback Approval Rate** – the percentage of positive feedback, indicating answer quality.
-- **Error Rate** – the number of failed RAG calls per second.
-- **Conversations Saved** – how many conversations are being persisted to the database.
-- **App Health** – a simple 1/0 indicator showing if the API is reporting itself healthy.
-
 ### Containerization
 
-[Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) have also been used for the application and API setup.
+[Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) have been used to launch the Streamlit UI, FastAPI backend, Qdrant, Postgres, Prometheus, and Grafana in one command. Instructions are provide in the [Quickstart guide](#-quickstart-recommended) above.
 
-To get started:
-
-**Prerequisites**
-
-- Docker and Docker Compose installed (should be already if running in Codespaces)
-- An OpenAI API key
-
-**Project layout (expected)**
-
-```kotlin
-project-root/
-├── data/
-│   └── music-theory-dataset-100.csv
-├── docker-compose.yml
-└── music-theory-assistant/
-    ├── api.py
-    ├── app.py
-    ├── ingest.py
-    ├── wait_for_qdrant.py
-    ├── requirements.txt
-    └── (other project files…)
-```
-
-**Environment**
-
-Set your OpenAI key so the containers can access it. The simplest thing to do is export it before running Compose:
-
-```bash
-export OPENAI_API_KEY=sk-...
-```
-
-(You can also put this in a .env file next to docker-compose.yml with OPENAI_API_KEY=....)
-
-**One-command run**
-
-From the **project root**, run:
-
-```bash
-docker compose up --build
-```
-
-What happens:
-
-- **Qdrant** starts and persists data in a named volume.
-- **Ingest** waits until Qdrant is ready, then loads [data/music-theory-dataset-100.csv](data/music-theory-dataset-100.csv) into the zoomcamp-music-theory collection (and exits).
-- **App** (Streamlit UI) starts on http://localhost:8501.
-- **API** (FastAPI) starts on http://localhost:8000.
-- **Monitoring** Prometheus starts on http://localhost:9090 and Grafana starts on http://localhost:3000.
-
-Visit:
-
-- UI: http://localhost:8501
-- API docs: http://localhost:8000/docs
-- Prometheus: http://localhost:9090
-- Grafana: http://localhost:3000 (admin/admin)
-
-**Re-ingesting data**
-
-If you change the CSV, re-run only the ingestion:
-
-```bash
-docker compose run --rm ingest
-```
-
-**Stopping everything**
-
-```bash
-docker compose down
-```
 ## Reproducibility
 
-TODO
+Full instructions on how to run the code and all dependencies are provided in this README file.
 
 ## Best Practices
 
-TODO
+Hybrid vector search and document re-ranking have been evaluated in the [Rag Test](/notebooks/rag-test.ipynb) file. User query re-ranking has not been implemented on this project. 
+
+## Bonus Points
+
+Deployment to the cloud has not been implemented for this project.
 
 ## Acknowledgements
 

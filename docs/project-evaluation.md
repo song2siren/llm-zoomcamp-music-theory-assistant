@@ -1,8 +1,6 @@
 # Project Evaluation
 
-Reference: The [evaluation criteria](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria) of the [LLM-zoomcamp course](https://github.com/DataTalksClub/llm-zoomcamp) (as of 15/08/2025).
-
-09/09/2024: Total: 20 / 21 points (~95%) (excluding 2 bonus points)
+Reference: The [evaluation criteria](https://github.com/DataTalksClub/llm-zoomcamp/blob/main/project.md#evaluation-criteria) of the [LLM-zoomcamp course](https://github.com/DataTalksClub/llm-zoomcamp) (as of 20/08/2025).
 
 - ✅ Problem description
   - [ ] 0 points: The problem is not described
@@ -27,7 +25,7 @@ Reference: The [evaluation criteria](https://github.com/DataTalksClub/llm-zoomca
 - ✅ Interface
   - [ ] 0 points: No way to interact with the application at all
   - [ ] 1 point: Command line interface, a script, or a Jupyter notebook
-  - [x] 2 points: UI (e.g., Streamlit), ~~web application (e.g., Django), or an API (e.g., built with FastAPI)~~
+  - [x] 2 points: UI (e.g., Streamlit), ~~web application (e.g., Django)~~, or an API (e.g., built with FastAPI)
 
 - ✅ Ingestion pipeline
   - [ ] 0 points: No ingestion
@@ -49,11 +47,11 @@ Reference: The [evaluation criteria](https://github.com/DataTalksClub/llm-zoomca
   - [ ] 1 point: Some instructions are provided but are incomplete, OR instructions are clear and complete, the code works, but the data is missing
   - [x] 2 points: Instructions are clear, the dataset is accessible, it's easy to run the code, and it works. The versions for all dependencies are specified.
 
-- 🚧 Best practices: IMPROVE
+- ✅ Best practices:
   - [x] Hybrid search: combining both text and vector search (at least evaluating it) (1 point)
   - [x] Document re-ranking (1 point)
   - [ ] User query rewriting (1 point)
 
-- ✅ Bonus points (not covered in the course)
-  - [x]  Deployment to the cloud (2 points)
+- ⬜ Bonus points (not covered in the course)
+  - [ ]  Deployment to the cloud (2 points)
   
