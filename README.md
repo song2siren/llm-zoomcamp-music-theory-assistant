@@ -67,52 +67,73 @@ There is a list of example questions you could ask the Music Theory Assistant in
 ## Setup
 The Python project has been developed in [GitHub Codespaces](https://github.com/features/codespaces). As such, it is preferable to use Codespaces to run this application.
 
-The project uses [OpenAI](https://openai.com/), so you need to provide the API key:
+The evaluation notebook [notebooks/rag-test.ipynb](/notebooks/rag-test.ipynb) can be run inside a **Pipenv** environment.
 
-1. OpenAI keys can be generated here: [OpenAI Platform](https://platform.openai.com/api-keys). The key is then stored as an evironment variable associated with this project.
-2. For OpenAI, it is recommended that you create a new project and use a separate key.
-3. Install `direnv`. This is a shell extension that automatically manages environment variables necessary to run the project.
+1. Get an OpenAI key
+    - Go to [OpenAI API keys](https://platform.openai.com/api-keys)
+    - Create a new key, ideally under a separate project for this assignment.
 
-```bash
-sudo apt update
-sudo apt install direnv
-echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
-source ~/.bashrc
-```
-4. Run `direnv allow` to load the key into your environment.
-5. Copy `.envrc_template` into `.envrc` and insert your OpenAI key there.
-6. Install pipenv (for dependency management):
+2. Install direnv (a shell extension necessary to manage environment variables):
 
-```bash
-pip install pipenv
-```
-7. Once installed, you can install the virtual environment and app dependencies:
+    ```bash
+    sudo apt update
+    sudo apt install direnv
+    echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
+    source ~/.bashrc
+    ```
 
-```bash
-pipenv install --dev
-```
-8. Now install remaining dependencies:
+3. Copy `.envrc_template` into `.envrc` and insert your OpenAI key there.
 
-```bash
-pipenv install \
-  openai \
-  scikit-learn \
-  pandas \
-  minsearch \
-  "qdrant-client[fastembed]>=1.14.2" \
-  sentence-transformers \
-  streamlit \
-  httpie \
-  python-dotenv \
-  psycopg2-binary \
-  prometheus-client
-```
+4. Run the following to load the OPENAI key into your environment:
 
-9. Now install developer tools
+    ```bash
+    direnv allow
+    ```
 
-```bash
-pipenv install --dev tqdm notebook==7.1.2 ipywidgets
-```
+    From now on, whenever you enter this project folder, `OPENAI_API_KEY` will be set automatically.
+
+5. Create the Pipenv environment:
+
+    ```bash
+    pip install pipenv
+    pipenv --python 3.11
+    ```
+
+6. Install dependencies
+
+    Runtime packages:
+
+    ```bash
+    pipenv install \
+      openai \
+      scikit-learn \
+      pandas \
+      minsearch \
+      "qdrant-client[fastembed]>=1.14.2" \
+      sentence-transformers \
+      python-dotenv \
+      httpie
+    ```
+
+    Developer / notebook tools:
+
+    ```bash
+    pipenv install --dev notebook==7.1.2 ipywidgets tqdm
+    ```
+
+7. (Linux/CPU) Install PyTorch wheel for SentenceTransformers
+
+    ```bash
+    pipenv run pip install "torch==2.3.1" --index-url https://download.pytorch.org/whl/cpu
+    ```
+
+8. Start Jupyter Notebook
+
+    ```bash
+    pipenv run jupyter notebook
+    ```
+
+    Open [`notebooks/rag-test.ipynb`](/notebooks/rag-test.ipynb)
 
 ## Evaluation
 
@@ -126,8 +147,9 @@ For each of the evaluation criteria, see the following sections of the README be
 - [Ingestion pipeline](#ingestion-pipeline)
 - [Monitoring](#monitoring)
 - [Containerization](#containerization)
-- [Reproducibility](#reproducibility) TODO
-- [Best practices](#best-practices) TODO
+- [Reproducibility](#reproducibility)
+- [Best practices](#best-practices)
+- [Bonus points](#bonus-points)
 
 The score criteria (with self-evaluation and additional commentary) can be found in the [Project Evaluation](/docs/project-evaluation.md) notebook.
 
@@ -159,7 +181,7 @@ docker run -p 6333:6333 -p 6334:6334 \
 
 ### Retrieval Flow
 
-The knowledgebase is based upon a [ChatGPT](https://chatgpt.com/) generated [Music Theory Dataset CSV file](/data/music-theory-dataset-100.csv).
+The knowledgebase is based upon a [ChatGPT](https://chatgpt.com/) generated [Music Theory Dataset CSV file](/data/music-theory-dataset-100.csv) and [GPT-4o mini LLM](https://chatgpt.com/?model=gpt-4o-mini) is used in the retrieval flow.
 
 ### Retrieval Evaluation
 
@@ -233,7 +255,7 @@ Note that here the MRR is lower, possibly because the first correct document is 
 
 ### LLM Evaluation
 
-Two approaches are taken to evaluate the quality of the RAG flow:
+Two approaches and different LLMs are taken to evaluate the quality of the RAG flow:
 
 * [Cosine similarity](#cosine-similarity) (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini))
 * [LLM-as-a-Judge](#llm-as-a-judge) (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) and [gpt-4o](https://chatgpt.com/?model=gpt-4o))

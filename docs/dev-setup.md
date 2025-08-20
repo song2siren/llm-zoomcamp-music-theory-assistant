@@ -34,6 +34,7 @@ If you prefer running locally (not recommended for reviewers), you can use [Pipe
     ```bash
     pipenv run uvicorn music-theory-assistant.api:app --reload --port 8000
     ```
+    
 ## Interacting with the API
 
 To ping the API (using [HTTPie](https://httpie.io/)):

@@ -4,21 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-openai = "*"
-scikit-learn = "*"
-pandas = "*"
-streamlit = "*"
-flask = "*"
-minsearch = "*"
-qdrant-client = {extras = ["fastembed"], version = ">=1.14.2"}
-psycopg2-binary = "*"
-python-dotenv = "*"
-prometheus-client = "*"
+httpie = "*"
 
 [dev-packages]
-tqdm = "*"
-notebook = "==7.1.2"
-ipywidgets = "*"
 
 [requires]
 python_version = "3.12"
