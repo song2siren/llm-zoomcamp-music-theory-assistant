@@ -65,7 +65,7 @@ There is a list of example questions you could ask the Music Theory Assistant in
 - [OpenAI](https://openai.com/) as an LLM
 
 ## Setup
-The Python project has been developed in [GitHub Codespaces](https://github.com/features/codespaces). As such, it is preferable to use Codespaces to run this application.
+The Python project has been developed in [GitHub Codespaces](https://github.com/features/codespaces) and [Visual Studio Code](https://code.visualstudio.com/). As such, it is recommended that Codespaces is used to run this application.
 
 The evaluation notebook [notebooks/rag-test.ipynb](/notebooks/rag-test.ipynb) can be run inside a **Pipenv** environment.
 
@@ -127,14 +127,6 @@ The evaluation notebook [notebooks/rag-test.ipynb](/notebooks/rag-test.ipynb) ca
     pipenv run pip install "torch==2.3.1" --index-url https://download.pytorch.org/whl/cpu
     ```
 
-8. Start Jupyter Notebook
-
-    ```bash
-    pipenv run jupyter notebook
-    ```
-
-    Open [`notebooks/rag-test.ipynb`](/notebooks/rag-test.ipynb)
-
 ## Evaluation
 
 For each of the evaluation criteria, see the following sections of the README below:
@@ -151,7 +143,7 @@ For each of the evaluation criteria, see the following sections of the README be
 - [Best practices](#best-practices)
 - [Bonus points](#bonus-points)
 
-The score criteria (with self-evaluation and additional commentary) can be found in the [Project Evaluation](/docs/project-evaluation.md) notebook.
+The score criteria (with self-evaluation) can be found in the [Project Evaluation](/docs/project-evaluation.md) notebook.
 
 The code for evaluating the system can be found in the [RAG Test](/notebooks/rag-test.ipynb) notebook.
 
@@ -161,15 +153,11 @@ To launch [Jupyter Notebook](https://jupyter.org/) from inside Pipenv, do the fo
 pipenv run jupyter notebook
 ```
 
-This code requires Qdrant and FastEmbed to be installed and running. If it is not available, do the following:
+Open [`notebooks/rag-test.ipynb`](/notebooks/rag-test.ipynb)
 
-Install Qdrant and FastEmbed (if not already installed during project setup):
+This code requires Qdrant and FastEmbed to be installed (as above in the [project setup](#setup)) and running. 
 
-```bash
-pipenv install "qdrant-client[fastembed]>=1.14.2"
-```
-
-Run in Docker:
+To run Qdrant in Docker:
 
 ```bash
 docker pull qdrant/qdrant
@@ -204,27 +192,27 @@ The first approach uses [minsearch](https://github.com/alexeygrigorev/minsearch/
 
 After the boosting is improved, the following results are returned:
 
-* hit_rate: 93%
-* MRR: 91%
+* hit_rate: 92%
+* MRR: 90%
 
 The best boosting parameters:
 
 ```python
 boost = {
-    'title': 2.83,
-    'artist': 0.58,
-    'genre': 0.75,
-    'key': 1.52,
-    'tempo_bpm': 1.02,
-    'time_signature': 0.80,
-    'chord_progression': 2.69,
-    'roman_numerals': 1.92,
-    'cadence': 1.06,
-    'theory_notes': 0.15
+    'title': 2.86,
+    'artist': 0.20,
+    'genre': 0.15,
+    'key': 2.69,
+    'tempo_bpm': 2.03,
+    'time_signature': 2.16,
+    'chord_progression': 0.09,
+    'roman_numerals': 1.39,
+    'cadence': 0.05,
+    'theory_notes': 0.51
 }
 ```
 
-Note that the routine to generate these parameters will likely return different results each time it is run.
+Note that the routine to generate these parameters will likely return different results each time it is run. These numbers were from a test run on 22/08/2025.
 
 #### Qdrant vector search
 
@@ -251,7 +239,7 @@ Finally, the fourth approach uses [Qdrant](https://qdrant.tech/) hybrid vector s
 
 Note that here the MRR is lower, possibly because the first correct document is still within the top results but pushed lower on average.
 
-**Conclusion**: The [**minsearch text search with boosted parameters**](#minsearch-boosted) seems to perform the best and is therefore used moving forward in the LLM evaluation below.
+**Conclusion**: The [**minsearch text search with boosted parameters**](#minsearch-boosted) seems to perform (marginally) the best and is therefore used moving forward in the LLM evaluation below.
 
 ### LLM Evaluation
 
@@ -264,7 +252,7 @@ Two approaches and different LLMs are taken to evaluate the quality of the RAG f
 
 For cosine similarity with a single test record, the following result was returned:
 
-* Cosine similarity: 0.47456914
+* Cosine similarity: 0.45508164
 
 For cosine similarity when comparing the [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) answer for each question in the [Ground Truth Dataset](data/ground-truth-retrieval.csv) with the answer in the original [Music Theory Dataset](/data/music-theory-dataset-100.csv), the following results were returned:
 
@@ -277,7 +265,7 @@ For cosine similarity when comparing the [gpt-4o-mini](https://chatgpt.com/?mode
 | 25%      | 0.51    | First quartile (poor matches).          |
 | 50%      | 0.58    | Median.                                 |
 | 75%      | 0.65    | Third quartile (good matches).          |
-| max      | 0.88    | Best similarity.                        |
+| max      | 0.89    | Best similarity.                        |
 
 Just a single model was used for cosine similarity, but for [LLM-as-a-Judge](#llm-as-a-judge) multiple models were evaluated.
 
@@ -285,17 +273,17 @@ Just a single model was used for cosine similarity, but for [LLM-as-a-Judge](#ll
 
 For the LLM-as-a-Judge (with [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini)), among 200 records, the following results were returned:
 
-* RELEVANT - 195 (97.5%)
-* PARTLY_RELEVANT - 4 (2%)
+* RELEVANT - 194 (97%)
+* PARTLY_RELEVANT - 5 (2.5%)
 * NON_RELEVANT - 1 (0.5%)
 
 For the LLM-as-a-Judge (with [gpt-4o](https://chatgpt.com/?model=gpt-4o)), among 200 records, the following results were returned:
 
-* RELEVANT - 193 (96.5%)
-* PARTLY_RELEVANT - 6 (3%)
-* NON_RELEVANT - 1 (0.5%)
+* RELEVANT - 194 (97%)
+* PARTLY_RELEVANT - 4 (2%)
+* NON_RELEVANT - 2 (1%)
 
-**Conclusion**: Using LLM-as-a-Judge [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) is marginally better and will be used for developiing the Music Theory Assistant application.
+**Conclusion**: Using LLM-as-a-Judge [gpt-4o-mini](https://chatgpt.com/?model=gpt-4o-mini) is marginally better and will be used for developing the Music Theory Assistant application.
 
 ### Interface
 
@@ -323,12 +311,12 @@ This project provides **two ways** to interact with the Music Theory Assistant:
 
 The fastest way to run the Music Theory Assistant is with [Docker Compose](https://docs.docker.com/compose/). This will launch the Streamlit UI, FastAPI backend, Qdrant, Postgres, Prometheus, and Grafana in one command.
 
-1. Prerequisites
+1. **Prerequisites**
     - [Docker](https://www.docker.com/)
     - [Docker Compose](https://docs.docker.com/compose/)
     - An [OpenAI API](https://platform.openai.com/api-keys) key
 
-2. Set your API key
+2. **Set your API key**
 
     Export your OpenAI API key so the containers can access it:
 
@@ -338,7 +326,7 @@ The fastest way to run the Music Theory Assistant is with [Docker Compose](https
 
     (Alternatively, create a `.env` file next to [docker-compose.yml](/docker-compose.yml) with OPENAI_API_KEY=sk-... inside.)
 
-3. Run everything
+3. **Run everything**
 
     From the project root:
 
@@ -348,16 +336,27 @@ The fastest way to run the Music Theory Assistant is with [Docker Compose](https
 
     That’s it 🎉 — everything is started at once.
 
-4. Open the services
+    Note that if any issues are encountered during setup with disk space/usage within Codespaces, [there is some information here](/docs/dev-setup.md#troubleshooting-low-disk-space-in-codespaces) on how to clean things up.
+
+4. **Open the services**
 
     - Streamlit App (UI) → http://localhost:8501
     - FastAPI Docs → http://localhost:8000/docs
     - Prometheus → http://localhost:9090
     - Grafana → http://localhost:3000 (login: admin / admin)
 
+    If running in Codespaces, open the **Ports** panel in VS Code. You should see the following forwarded automatically:
+
+    - 8501 → Streamlit UI
+    - 8000 → FastAPI
+    - 9090 → Prometheus
+    - 3000 → Grafana
+
+    If they don’t appear, forward them manually once. Locally, you can just use `http://localhost:<port>`.
+
     The dataset ingestion step runs automatically on startup as a [Python script](/music-theory-assistant/ingest.py), so the app is ready to query.
 
-5. Re-ingest data (if you change the CSV)
+5. **Re-ingest data (if you change the CSV)**
 
     If you update the dataset, reload it into Qdrant with:
 
@@ -365,13 +364,13 @@ The fastest way to run the Music Theory Assistant is with [Docker Compose](https
     docker compose run --rm ingest
     ```
 
-6. Stop everything
+6. **Stop everything**
 
     ```bash
     docker compose down
     ```
 
-🔧 Development without Docker (*Optional*)
+#### 🔧 Development without Docker (*Optional*)
 
 If you prefer running locally (not recommended for reviewers), see [these instructions](/docs/dev-setup.md).
 
@@ -379,7 +378,7 @@ If you prefer running locally (not recommended for reviewers), see [these instru
 
 The [dataset (of musical theory–annotated songs)](/data/music-theory-dataset-100.csv) is loaded into a Qdrant vector database via a dedicated [Python ingestion script](/music-theory-assistant/ingest.py). This ensures that the retrieval layer is always backed by fresh and structured embeddings.
 
-It generates embeddings for each record (title, artist, genre, chords, cadences, etc.) using jinaai/jina-embeddings-v2-small-en.
+It generates embeddings for each record (title, artist, genre, chords, cadences, etc.) using `jinaai/jina-embeddings-v2-small-en`.
 
 The embeddings and payloads are stored in a Qdrant collection (zoomcamp-music-theory-assistant).
 
@@ -414,7 +413,7 @@ To import it:
 
 1. Open Grafana → http://localhost:3000 (login: admin / admin)
 2. Left menu → Dashboards → New → Import
-3. Upload dashboard.json (from the project root).
+3. Upload [dashboard.json](/dashboard.json) (from the project root).
 4. Select Prometheus as the data source.
 5. Click Import.
 

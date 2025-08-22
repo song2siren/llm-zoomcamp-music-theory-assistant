@@ -82,3 +82,44 @@ And check...
 ```bash
 curl -s http://localhost:8000/metrics | grep -E 'feedback_(up|down)_total'
 ```
+
+## Troubleshooting: Low Disk Space in Codespaces  
+
+GitHub Codespaces gives each project a limited amount of storage (~32 GB). If you see warnings about low disk space when building Docker images, try cleaning up unnecessary files.  
+
+### Check space usage
+
+```bash
+df -h /
+du -xhd1 ~ | sort -h
+du -xhd1 /workspaces | sort -h
+```
+
+### Clean caches and old packages
+
+```bash
+# Clear package caches
+sudo apt-get clean
+
+# Clear pip cache
+rm -rf ~/.cache/pip
+
+# Clear npm cache (if present)
+rm -rf ~/.npm
+
+# Clear general caches
+rm -rf ~/.cache/*
+```
+
+### Remove unused Docker resources
+
+```bash
+docker system prune -af
+docker volume prune -f
+```
+
+### Verify space has been freed
+
+```bash
+df -h /
+```
