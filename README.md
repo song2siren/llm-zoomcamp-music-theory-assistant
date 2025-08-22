@@ -34,7 +34,7 @@ The main use cases include:
 
 ## Dataset
 
-The [dataset used in this project]((data/music-theory-dataset-100.csv)) contains detailed music theory annotations for various well-known songs, including:
+The [dataset used in this project](/data/music-theory-dataset-100.csv) contains detailed music theory annotations for various well-known songs, including:
 
 - **Title:** The name of the song (e.g., *Let It Be*, *Smells Like Teen Spirit*).  
 - **Artist:** The performing artist or band (e.g., The Beatles, Nirvana).  
